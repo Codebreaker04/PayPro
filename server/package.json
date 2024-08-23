@@ -8,5 +8,18 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
-  }
+  },
+  "name": "payproapi",
+  "version": "1.0.0",
+  "description": "pay pro APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "payPro"
+  ],
+  "author": "yuvraj",
+  "license": "ISC"
 }
