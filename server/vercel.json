@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "PayPro App",
+  "builds": [
+    {
+      "src":  "app.jsx",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ]
+}
