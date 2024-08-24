@@ -16,7 +16,7 @@ export function SendMoneyPage() {
   function handleTransfer() {
     axios
       .post(
-        "http://localhost:3000/api/v1/account/transfer",
+        "pay-pro-api.vercel.app/api/v1/account/transfer",
         {
           toId: id,
           amount: amount,
