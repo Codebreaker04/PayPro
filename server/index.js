@@ -3,14 +3,7 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://pay-pro-mocha.vercel.app",
-    method: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  }),
-);
+app.use(cors());
 app.use(express.json());
 
 const port = 3000;
