@@ -7,7 +7,7 @@ app.use(
   cors({
     origin: "https://pay-pro-mocha.vercel.app",
     method: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   }),
 );
