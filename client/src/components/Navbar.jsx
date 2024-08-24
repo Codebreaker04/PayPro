@@ -1,7 +1,3 @@
-import { DropdownMenu } from "./DropdownMenu.jsx";
-import { useRecoilValue } from "recoil";
-import { usernameState } from "../State/atomFamily/atom.js";
-
 export function Navbar({ username, dropdown }) {
   return (
     <div

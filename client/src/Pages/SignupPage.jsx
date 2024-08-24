@@ -3,12 +3,10 @@ import { Description } from "../components/Description.jsx";
 import { InputField } from "../components/InputField.jsx";
 import { Button } from "../components/Button.jsx";
 import { BottomLogin } from "../components/BottomLogin.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar.jsx";
-import { UserName } from "../components/UserName.jsx";
-import { DropdownMenu } from "../components/DropdownMenu.jsx";
 
 export function SignupPage() {
   const navigate = useNavigate();
