@@ -51,6 +51,11 @@ export function SignupPage() {
                     firstName,
                     lastName,
                   },
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  },
                 );
                 localStorage.setItem("token", response.data.token);
                 navigate("/dashboard");
