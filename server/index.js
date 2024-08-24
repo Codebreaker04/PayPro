@@ -5,7 +5,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://pay-pro-mocha.vercel.app/",
+    origin: "https://pay-pro-mocha.vercel.app",
     method: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Authorization"],
     credentials: true,
