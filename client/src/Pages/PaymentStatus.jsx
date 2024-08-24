@@ -11,7 +11,7 @@ export function PaymentStatus() {
 
   function handleLogOut() {
     axios
-      .get("pay-pro-api.vercel.app/api/v1/user/", {
+      .get("https://pay-pro-api.vercel.app/api/v1/user/", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },

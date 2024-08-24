@@ -44,7 +44,7 @@ export function SignupPage() {
               label="Sign Up"
               onClick={async () => {
                 const response = await axios.post(
-                  "pay-pro-api.vercel.app/api/v1/user/signup",
+                  "https://pay-pro-api.vercel.app/api/v1/user/signup",
                   {
                     username,
                     password,

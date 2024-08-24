@@ -8,7 +8,7 @@ export function Users() {
 
   useEffect(() => {
     axios
-      .get(`pay-pro-api.vercel.app/api/v1/user/bulk?filter=${filter}`)
+      .get(`https://pay-pro-api.vercel.app/api/v1/user/bulk?filter=${filter}`)
       .then((response) => {
         setUsers(response.data.user);
       });

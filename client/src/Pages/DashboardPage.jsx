@@ -11,7 +11,7 @@ export function DashboardPage() {
   const [balance, setBalance] = useState(0);
   useEffect(() => {
     axios
-      .get("pay-pro-api.vercel.app/api/v1/account/balance", {
+      .get("https://pay-pro-api.vercel.app/api/v1/account/balance", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
