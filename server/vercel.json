@@ -3,7 +3,7 @@
   "name": "PayPro App",
   "builds": [
     {
-      "src":  "index.html",
+      "src":  "index.js",
       "use": "@vercel/node"
     }
   ],
@@ -17,7 +17,8 @@
         "PUT",
         "PATCH",
         "DELETE",
-        "OPTIONS",
+        "OPTIONS"
+        ]
     }
   ]
 }
