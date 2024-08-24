@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { usernameState } from "../State/atomFamily/atom.js";
 import { useNavigate } from "react-router-dom";
 
-export function NavDropdownMenu() {
+export function DropdownMenu() {
   const username = useRecoilValue(usernameState) || "username";
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropDownRef = useRef(null);
