@@ -60,20 +60,23 @@ const signinSchema = z.object({
   password: z.string(),
 });
 
-router.post("/signin", async (req, res) => {
-  const body = req.body;
-  const { success } = signinSchema.safeParse(body);
+router.post("/signin", async (req, res, err) => {
+  try {
+    const body = req.body;
+    const { success } = signinSchema.safeParse(body);
 
-  if (!success) {
-    return res.json({ msg: "incorrect inputs " });
-  }
+    if (!success) {
+      return res.status(401).json({ msg: "incorrect inputs " });
+    }
 
-  const user = await User.findOne({
-    username: body.username,
-    password: body.password,
-  });
+    const user = await User.findOne({
+      username: body.username,
+      password: body.password,
+    });
 
-  if (user) {
+    if (!user) {
+      return res.status(401).json({ msg: "Invalid username or password" });
+    }
     const token = jwt.sign(
       {
         userId: user._id.toString(),
@@ -85,6 +88,8 @@ router.post("/signin", async (req, res) => {
       msg: "User loggedIn successfully",
       token: token,
     });
+  } catch (err) {
+    return err.status(500).json({ msg: "An error occurred during sign-in" });
   }
 });
 
