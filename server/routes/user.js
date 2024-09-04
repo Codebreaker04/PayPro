@@ -66,7 +66,7 @@ router.post("/signin", async (req, res, err) => {
     const { success } = signinSchema.safeParse(body);
 
     if (!success) {
-      return res.status(400).json({ msg: "incorrect inputs " });
+      return res.status(401).json({ msg: "incorrect inputs " });
     }
 
     const user = await User.findOne({
