@@ -21,7 +21,6 @@ export function SigninPage() {
   };
 
   const handleSignin = async () => {
-    setOpen(true);
     try {
       const response = await axios.post(
         "https://pay-pro-api.vercel.app/api/v1/user/signin",

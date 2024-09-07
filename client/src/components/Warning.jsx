@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Stack, Alert, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 
 export function Warning({ label, handleClose }) {
   useEffect(() => {
