@@ -21,6 +21,7 @@ export function SigninPage() {
   };
 
   const handleSignin = async () => {
+    setOpen(true);
     try {
       const response = await axios.post(
         "https://pay-pro-api.vercel.app/api/v1/user/signin",
@@ -39,7 +40,7 @@ export function SigninPage() {
   return (
     <div className=" h-screen bg-slate-300">
       <Navbar />
-      <div className=" sticky">
+      <div className="relative">
         {error && open && (
           <Warning label={error} handleClose={warningHandleClose} />
         )}

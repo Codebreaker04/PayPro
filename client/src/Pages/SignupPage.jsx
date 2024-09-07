@@ -23,6 +23,7 @@ export function SignupPage() {
   }
 
   async function handleSignup() {
+    setOpen(true);
     try {
       const response = await axios.post(
         "https://pay-pro-api.vercel.app/api/v1/user/signup",
@@ -44,10 +45,12 @@ export function SignupPage() {
     <div>
       <div className=" h-screen bg-slate-300  ">
         <Navbar />
-        <div className=" flex flex-col justify-center items-center">
+        <div className="relative">
           {error && open && (
             <Warning label={error} handleClose={handleWarningClose} />
           )}
+        </div>
+        <div className=" flex flex-col justify-center items-center">
           <div className="rounded-lg w-80 h-max text-center p-2 px-4 mt-10 bg-white">
             <Heading label="Sign Up" />
             <Description info="Enter your information to create an account" />
