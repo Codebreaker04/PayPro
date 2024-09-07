@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar.jsx";
+import { Warning } from "../components/Warning.jsx";
 
 export function SignupPage() {
   const navigate = useNavigate();
@@ -14,11 +15,39 @@ export function SignupPage() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+
+  function handleWarningClose() {
+    setOpen(false);
+  }
+
+  async function handleSignup() {
+    try {
+      const response = await axios.post(
+        "https://pay-pro-api.vercel.app/api/v1/user/signup",
+        {
+          username,
+          password,
+          firstName,
+          lastName,
+        },
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.response.data.msg);
+    }
+  }
+
   return (
     <div>
       <div className=" h-screen bg-slate-300  ">
         <Navbar />
         <div className=" flex flex-col justify-center items-center">
+          {error && open && (
+            <Warning label={error} handleClose={handleWarningClose} />
+          )}
           <div className="rounded-lg w-80 h-max text-center p-2 px-4 mt-10 bg-white">
             <Heading label="Sign Up" />
             <Description info="Enter your information to create an account" />
@@ -45,19 +74,8 @@ export function SignupPage() {
             <div>
               <Button
                 label="Sign Up"
-                onClick={async () => {
-                  const response = await axios.post(
-                    "https://pay-pro-api.vercel.app/api/v1/user/signup",
-                    {
-                      username,
-                      password,
-                      firstName,
-                      lastName,
-                    },
-                  );
-                  localStorage.setItem("token", response.data.token);
-                  navigate("/dashboard");
-                }}
+                onClick={handleSignup}
+                skeleton="Signing Up...."
               />
               <BottomLogin
                 label="Already have an account?"
