@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { usernameState } from "../State/atomFamily/atom.js";
 
 export function Users() {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
+  const username = useRecoilValue(usernameState) || "username";
 
   useEffect(() => {
     axios
       .get(`https://pay-pro-api.vercel.app/api/v1/user/bulk?filter=${filter}`)
       .then((response) => {
-        setUsers(response.data.user);
+        const filteredUsers = response.data.user.filter(
+          (user) => user.firstname !== username,
+        );
+        setUsers(filteredUsers);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+        // Handle error (e.g., show error message to user)
       });
-  }, [filter]);
+  }, [filter, username]);
 
   return (
-    <div className="z-0">
-      <form className="max-w-full p-7 mx-auto">
+    <div className="flex flex-col h-[calc(100vh-180px)] z-0">
+      <form className="w-full p-7 mx-auto">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -59,7 +69,7 @@ export function Users() {
           </button>
         </div>
       </form>
-      <div>
+      <div className="flex-grow overflow-y-scroll m-2 border-2 rounded-md shadow-md">
         {users.map((user) => (
           <User user={user} key={user._id} />
         ))}
@@ -71,7 +81,7 @@ export function Users() {
 function User({ user }) {
   const navigate = useNavigate();
   return (
-    <div className="m-7 flex justify-between items-center rounded-md ">
+    <div className="m-7 mb-4 flex justify-between items-center rounded-md ">
       <div>
         <div className="flex items-center justify-between">
           <div className="shadow-md rounded-full h-10 w-10 bg-white border border-slate-300 text-center">
