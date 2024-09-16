@@ -22,7 +22,6 @@ export function DashboardPage() {
         console.log(response);
         setBalance(response.data.balance);
         setUsername(response.data.firstname);
-        SetUser();
       });
   }, []);
   return (
