@@ -15,44 +15,48 @@ const userSchema = z.object({
 });
 
 router.post("/signup", async (req, res) => {
-  const body = req.body;
-  const { success } = userSchema.safeParse(body);
+  try {
+    const body = req.body;
+    const { success } = userSchema.safeParse(body);
 
-  if (!success) {
-    return res.json({ msg: "incorrect inputs " });
+    if (!success) {
+      return res.status(401).json({ msg: "invalid input types " });
+    }
+
+    const isUser = await User.findOne({ username: body.username });
+
+    if (isUser) {
+      return res
+        .status(401)
+        .json({ msg: "Email already taken/ Incorrect email" });
+    }
+
+    const user = await User.create({
+      username: body.username,
+      password: body.password,
+      firstName: body.firstName,
+      lastName: body.lastName,
+    });
+
+    const account = await Account.create({
+      userId: user._id,
+      balance: 100,
+    });
+
+    const token = jwt.sign(
+      {
+        userId: user._id.toString(),
+      },
+      JWT_SECRET,
+    );
+
+    res.json({
+      msg: "User created successfully",
+      token: token,
+    });
+  } catch (err) {
+    return res.status(500).json({ msg: "An error occurred during sign-Up" });
   }
-
-  const isUser = await User.findOne({ username: body.username });
-
-  if (isUser) {
-    return res
-      .status(411)
-      .json({ msg: "Email already taken/ Incorrect email" });
-  }
-
-  const user = await User.create({
-    username: body.username,
-    password: body.password,
-    firstName: body.firstName,
-    lastName: body.lastName,
-  });
-
-  const account = await Account.create({
-    userId: user._id,
-    balance: 100,
-  });
-
-  const token = jwt.sign(
-    {
-      userId: user._id.toString(),
-    },
-    JWT_SECRET,
-  );
-
-  res.json({
-    msg: "User created successfully",
-    token: token,
-  });
 });
 
 const signinSchema = z.object({
@@ -60,20 +64,28 @@ const signinSchema = z.object({
   password: z.string(),
 });
 
-router.post("/signin", async (req, res) => {
-  const body = req.body;
-  const { success } = signinSchema.safeParse(body);
+router.post("/signin", async (req, res, err) => {
+  try {
+    const body = req.body;
+    const { success } = signinSchema.safeParse(body);
 
-  if (!success) {
-    return res.json({ msg: "incorrect inputs " });
-  }
+    if (!success) {
+      return res.status(401).json({ msg: "incorrect inputs " });
+    }
 
-  const user = await User.findOne({
-    username: body.username,
-    password: body.password,
-  });
+    const user = await User.findOne({
+      username: body.username,
+      // password: body.password,
+    });
 
-  if (user) {
+    if (!user) {
+      return res.status(401).json({ msg: "Invalid username" });
+    }
+
+    if (user.password != body.password) {
+      return res.status(401).json({ msg: "Invalid password" });
+    }
+
     const token = jwt.sign(
       {
         userId: user._id.toString(),
@@ -85,6 +97,8 @@ router.post("/signin", async (req, res) => {
       msg: "User loggedIn successfully",
       token: token,
     });
+  } catch (err) {
+    return err.status(500).json({ msg: "An error occurred during sign-in" });
   }
 });
 
