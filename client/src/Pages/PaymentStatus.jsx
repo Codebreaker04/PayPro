@@ -23,9 +23,9 @@ export function PaymentStatus() {
   }
 
   return (
-    <div className=" h-screen bg-slate-300 flex justify-center">
+    <div className=" h-screen bg-slate-300 dark:bg-neutral-700 flex justify-center dark:text-white">
       <div className=" flex flex-col justify-center">
-        <div className="rounded-lg w-90 h-max text-center p-2 px-4 bg-white">
+        <div className="rounded-lg w-90 h-max text-center p-2 px-4 bg-white dark:bg-neutral-600">
           <div>
             <Heading label={`Payment ${status}`} />
             <div className="flex justify-between mt-20">

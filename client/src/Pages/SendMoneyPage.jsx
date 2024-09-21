@@ -41,11 +41,11 @@ export function SendMoneyPage() {
   }
 
   return (
-    <div className="h-screen bg-slate-300 flex justify-center items-center relative">
-      <div className="w-80 h-max text-center p-2 bg-white rounded-md shadow-md flex flex-col justify-center ">
+    <div className="h-screen bg-slate-300 dark:bg-neutral-800 dark:text-white flex justify-center items-center relative">
+      <div className="w-80 h-max text-center p-2 bg-white dark:bg-neutral-600 rounded-md shadow-md flex flex-col justify-center ">
         <Heading label="Send Money" />
         <div className="pt-10 pl-2 flex items-center">
-          <div className="rounded-full h-12 w-12 border p-2 shadow-md font-medium text-lg">
+          <div className="rounded-full h-12 w-12 border p-2 shadow-md font-medium text-lg dark:bg-neutral-800">
             {name[0].toUpperCase()}
           </div>
           <div className="p-2 text-xl font-medium">{name}</div>

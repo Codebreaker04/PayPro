@@ -15,7 +15,7 @@ export function Button({ skeleton, label, onClick }) {
     <button
       type="button"
       disabled={isPending}
-      className=" w-full h-10 bg-neutral-900 rounded-lg text-white text-lg hover:bg-neutral-700"
+      className=" w-full h-10 bg-neutral-900 rounded-lg text-white text-lg hover:bg-neutral-700 dark:hover:bg-neutral-800 dark:text-white"
       onClick={handleClick}
     >
       {isPending ? skeleton : label}

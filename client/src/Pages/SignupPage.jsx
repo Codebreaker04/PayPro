@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar.jsx";
 import { Warning } from "../components/Warning.jsx";
+import { DarkThemeButton } from "../components/DarkThemeButton.jsx";
 
 export function SignupPage() {
   const navigate = useNavigate();
@@ -43,15 +44,15 @@ export function SignupPage() {
 
   return (
     <div>
-      <div className=" h-screen bg-slate-300  ">
-        <Navbar />
+      <div className=" h-screen bg-slate-300 dark:bg-neutral-800 dark:text-white">
+        <Navbar comp={<DarkThemeButton />} />
         <div className="relative">
           {error && open && (
             <Warning label={error} handleClose={handleWarningClose} />
           )}
         </div>
         <div className=" flex flex-col justify-center items-center">
-          <div className="rounded-lg w-80 h-max text-center p-2 px-4 mt-10 bg-white">
+          <div className="rounded-lg w-80 h-max text-center p-2 px-4 mt-10 bg-white dark:bg-neutral-700">
             <Heading label="Sign Up" />
             <Description info="Enter your information to create an account" />
             <InputField
@@ -71,7 +72,7 @@ export function SignupPage() {
             />
             <InputField
               label="Password"
-              placeholder=" "
+              placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
             />
             <div>

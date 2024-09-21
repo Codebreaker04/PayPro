@@ -29,14 +29,14 @@ export function Users() {
       <form className="w-full p-7 mx-auto">
         <label
           htmlFor="default-search"
-          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          className="mb-2 text-sm font-medium text-gray-900 sr-only dark:bg-neutral-700 dark:text-white"
         >
           Search
         </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="relative ">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
             <svg
-              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-5 h-5 text-gray-500 "
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -54,7 +54,7 @@ export function Users() {
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-slate-300 rounded-lg bg-white focus:outline-none focus:border-slate-400"
+            className="block w-full p-4 ps-10 text-sm text-gray-900 dark:text-white border border-slate-300 dark:border-neutral-500 rounded-lg bg-white dark:bg-neutral-700 focus:outline-none focus:border-slate-400"
             placeholder="Search users"
             onChange={(e) => {
               setFilter(e.target.value);
@@ -63,13 +63,13 @@ export function Users() {
           />
           <button
             type="submit"
-            className="text-white absolute end-2.5 bottom-2.5 bg-gray-800 hover:bg-gray-600 focus:outline-none font-medium rounded-lg text-[16px] px-4 py-2"
+            className="text-white absolute end-2.5 bottom-2.5 bg-gray-800 dark:bg-neutral-800 hover:bg-gray-600 dark:hover:bg-neutral-500 focus:outline-none font-medium rounded-lg text-[16px] px-4 py-2"
           >
             Search
           </button>
         </div>
       </form>
-      <div className="flex-grow overflow-y-scroll m-2 border-2 rounded-md shadow-md">
+      <div className="flex-grow overflow-y-scroll m-2 border-2 dark:border-neutral-700 rounded-md shadow-md">
         {users.map((user) => (
           <User user={user} key={user._id} />
         ))}
@@ -84,8 +84,8 @@ function User({ user }) {
     <div className="m-7 mb-4 flex justify-between items-center rounded-md ">
       <div>
         <div className="flex items-center justify-between">
-          <div className="shadow-md rounded-full h-10 w-10 bg-white border border-slate-300 text-center">
-            <div className="pt-[2.5px] text-lg">
+          <div className="flex flex-col justify-center shadow-md rounded-full h-10 w-10 bg-white dark:bg-neutral-800 border border-slate-300 dark:border-neutral-700 text-center  dark:text-white">
+            <div className="pt-[2.5px] text-lg ">
               {user.firstname[0].toUpperCase()}
             </div>
           </div>
@@ -96,7 +96,7 @@ function User({ user }) {
       </div>
       <div>
         <button
-          className="bg-gray-800 shadow-md w-40 h-10 text-white rounded-lg text-lg font-medium hover:bg-gray-600 "
+          className="bg-gray-800 shadow-md w-40 h-10 text-white rounded-lg text-lg font-medium hover:bg-gray-600 dark:bg-neutral-600 dark:hover:bg-neutral-500 "
           onClick={(e) => {
             navigate(`/send?userId=${user.id}&name=${user.firstname}`);
           }}

@@ -26,9 +26,9 @@ export function DashboardPage() {
   }, []);
   return (
     <div
-      className={`w-full h-screen bg-neutral-100 text-[#393E46] font-[Galano Grotesque]`}
+      className={`w-full h-screen bg-neutral-100 text-[#393E46] font-[Galano Grotesque] dark:bg-neutral-800 dark:text-white`}
     >
-      <Navbar username={<UserName />} dropdown={<DropdownMenu />} />
+      <Navbar username={<UserName />} comp={<DropdownMenu />} />
       <Balance amount={balance} />
       <Users />
     </div>
